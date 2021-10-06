@@ -8,25 +8,31 @@
 <body>
 <!-- Start your code here -->
   <div class="invoice-header">
-    <div class="number">Faktúra E38912</div>
+    <div class="number">Faktúra {{numberRowPrefix}}{{number}}</div>
     <div>
-      <div>Dátum vystavenia: 23.8.2021</div>
-      <div>Dátum dodania: 23.8.2021</div>
-      <div>Dátum splatnosti: 23.8.2021</div>
-      <div>Spôsob úhrady: Platobnou kartou</div>
+      <div>Dátum vystavenia: {{dateCreated}}</div>
+      <div>Dátum dodania: {{dateDelivered}}</div>
+      <div>Dátum splatnosti: {{dateDue}}</div>
+      <div>Spôsob úhrady: {{transactionType}}</div>
     </div>
   </div>
   <div class="invoice-header">
     <div class="seller">
       <div class="info">
         <div class="header">Dodávateľ</div>
-        <div>2day s.r.o</div>
-        <div>Pri suchom mlyne</div>
-        <div>90201 Pezinok</div>
-        <div>Slovensko</div>
-        <div>IČO: 19238912382</div>
-        <div>DIČ: 19238912382</div>
-        <div>IČ DPH: 19238912382</div>
+        <div>{{sellerIdentity.name}}</div>
+        <div>{{sellerIdentity.street}}</div>
+        <div>{{sellerIdentity.zip}} {{sellerIdentity.city}}</div>
+        <div>{{sellerIdentity.country}}</div>
+        {{#if sellerIdentity.ico}}
+        <div>IČO: {{sellerIdentity.ico}}</div>
+        {{/if}}
+        {{#if sellerIdentity.dic}}
+        <div>DIČ: {{sellerIdentity.dic}}</div>
+        {{/if}}
+        {{#if sellerIdentity.icdph}}
+        <div>IČ DPH: {{sellerIdentity.icdph}}</div>
+        {{/if}}
        </div>
       <div class="logo">
           <img src="/image1/"/>
@@ -36,24 +42,29 @@
       <div class="buyer">
         <div class="billing">
           <div class="header">Odoberateľ</div>
-            <div>2day s.r.o</div>
-            <div>Pri suchom mlyne</div>
-            <div>90201 Pezinok</div>
-            <div>Slovensko</div>
-            <div>IČO: 19238912382</div>
-            <div>DIČ: 19238912382</div>
-            <div>IČ DPH: 19238912382</div>
+            <div>{{buyer.billing.name}}</div>
+            <div>{{buyer.billing.street}}</div>
+            <div>{{buyer.billing.zip}} {{buyer.billing.city}}</div>
+            <div>{{buyer.billing.country}}</div>
+            {{#if buyer.billing.ico}}
+            <div>IČO: {{buyer.billing.ico}}</div>
+            {{/if}}
+            {{#if buyer.billing.dic}}
+            <div>DIČ: {{buyer.billing.dic}}</div>
+            {{/if}}
+            {{#if buyer.billing.icdph}}
+            <div>IČ DPH: {{buyer.billing.icdph}}</div>
+            {{/if}}
         </div>
+        {{#if buyer.delivery}}
         <div class="delivery">
           <div class="header">Dodacia adresa</div>
-            <div>2day s.r.o</div>
-            <div>Pri suchom mlyne</div>
-            <div>90201 Pezinok</div>
-            <div>Slovensko</div>
-            <div>IČO: 19238912382</div>
-            <div>DIČ: 19238912382</div>
-            <div>IČ DPH: 19238912382</div>
+            <div>{{buyer.delivery.name}}</div>
+            <div>{{buyer.delivery.street}}</div>
+            <div>{{buyer.delivery.zip}} {{buyer.delivery.city}}</div>
+            <div>{{buyer.delivery.country}}</div>
         </div>
+        {{/if}}
     </div>
   </div>
  </div>
@@ -67,28 +78,21 @@
       <div>Jedn. cena s DPH</div>
       <div>Celkovo</div>
     </div>
+    {{#each formattedProducts}}
     <div class="items-cont">
-       <div class="product-name">Vino skovajsa Pinot Blanc 2018</div>
-        <div>2ks</div>
-        <div>10€</div>
-        <div>12€</div>
-       <div>12€</div>
-        <div>20%</div>
-        <div>9.60€</div>
+       <div class="product-name">{{this.name}}</div>
+        <div>{{this.quantity}}</div>
+        <div>{{this.priceBeforeDiscountWithoutVAT}}</div>
+        <div>{{this.discount}}</div>
+        <div>{{this.priceAfterDiscountWithoutVAT}}</div>
+        <div>{{this.priceAfterDiscountWithVAT}}</div>
+        <div>{{this.totalPrice}}</div>
     </div>
-        <div class="items-cont">
-       <div class="product-name">Vino skovajsa Pinot Blanc 2018</div>
-        <div>2ks</div>
-        <div>10€</div>
-        <div>12€</div>
-       <div>12€</div>
-        <div>20%</div>
-        <div>9.60€</div>
-    </div>
+    {{/each}}
   </div>
   <div class="footer">
     <div class="note">
-      <div>Poznamka:</div>
+      <div>Poznamka: {{note}}</div>
     </div>
     <div class="summary"> 
       <div class="vat">
@@ -97,12 +101,14 @@
         <div>Základ DPH</div>
         <div>Výška DPH</div>
         <div>Celkovo k uhrade</div>
+        <div>Uhradené</div>
       </div>
       <div>
         <div>20%</div>
-        <div>10€</div>
-        <div>2€</div>
-        <div class="total">12€</div>
+        <div>{{priceSumWithoutVAT}}</div>
+        <div>{{priceSumVATDifference}}</div>
+        <div class="total">{{priceSumWithVAT}}</div>
+        <div class="total">{{priceSumPaidAlready}}</div>
       </div>
      </div>
     </div>
