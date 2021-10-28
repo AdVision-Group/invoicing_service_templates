@@ -72,7 +72,7 @@
       <div class="product-name">Meno produktu</div>
       <div>Mnozstvo</div>
       <div>Jedn. cena bez DPH pred zľavou</div>
-      <div>Zľava</div>
+      <div>Zľava v %</div>
       <div>Jedn. cena bez DPH po zľave</div>
       <div>Jedn. cena s DPH</div>
       <div>Celkovo</div>
@@ -82,7 +82,7 @@
        <div class="product-name">{{this.name}}</div>
         <div>{{this.quantity}} {{this.quantityUnit}}</div>
         <div>{{this.priceBeforeDiscountWithoutVAT}}</div>
-        <div>{{this.discount}}</div>
+        <div>{{#if (ne this.discount 0)}}{{this.discount}}{{/if}}</div>
         <div>{{this.priceAfterDiscountWithoutVAT}}</div>
         <div>{{this.priceAfterDiscountWithVAT}}</div>
         <div>{{this.totalPrice}}</div>
