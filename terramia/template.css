@@ -1,0 +1,92 @@
+* {
+   box-sizing: border-box;
+   font-size: 10px;
+}
+.invoice-header > div {
+   border: 1px solid black;
+}
+.invoice-header {
+   display: flex;
+   width: 100%;
+}
+.border {
+   border: 1px solid black;
+}
+.invoice-header > div {
+   flex: 1;
+   padding: 5px;
+}
+.seller {
+   display: flex;
+}
+.info {
+   flex: 4;
+}
+.logo {
+   flex: 2;
+}
+.logo img {
+   max-width: 100%;
+   object-fit: contain;
+}
+.number {
+   font-size: 30px;
+   padding-bottom: 20px;
+   font-weight: bold;
+}
+.header {
+   font-weight: bold;
+   font-size: 20px;
+}
+
+.buyer {
+   display: flex;
+}
+.delivery {
+   margin-left: 20px;
+}
+.items {
+   margin-top: 30px;
+   border: 1px solid black;
+}
+.items-header {
+   display: flex;
+   justify-content: space-between;
+}
+.items-header > div {
+   padding: 5px;
+   flex: 1;
+}
+.items-cont {
+   display: flex;
+   justify-content: space-between;
+}
+.items-cont > div {
+   padding: 5px;
+   flex: 1;
+}
+.product-name {
+   flex: 2 !important;
+}
+
+.footer {
+   display: flex;
+}
+.note {
+   flex: 2;
+   border: 1px solid black;
+   padding: 5px;
+   padding-top: 20px;
+}
+.summary {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   border: 1px solid black;
+   padding: 5px;
+   padding-top: 20px;
+}
+.summary > div {
+   display: flex;
+   justify-content: space-between;
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  /css/
+</style>
+</head>
+<body>
+<!-- Start your code here -->
+  <div class="invoice-header">
+    <div class="number">Faktúra {{numberRowPrefix}}{{number}}</div>
+    <div>
+      <div>Dátum vystavenia: {{dateCreated}}</div>
+      <div>Dátum dodania: {{dateDelivered}}</div>
+      <div>Dátum splatnosti: {{dateDue}}</div>
+      <div>Spôsob úhrady: {{transactionType}}</div>
+    </div>
+  </div>
+  <div class="invoice-header">
+    <div class="seller">
+      <div class="info">
+        <div class="header">Dodávateľ</div>
+        <div>{{sellerIdentity.name}}</div>
+        <div>{{sellerIdentity.street}}</div>
+        <div>{{sellerIdentity.zip}} {{sellerIdentity.city}}</div>
+        <div>{{sellerIdentity.country}}</div>
+        {{#if sellerIdentity.ico}}
+        <div>IČO: {{sellerIdentity.ico}}</div>
+        {{/if}}
+        {{#if sellerIdentity.dic}}
+        <div>DIČ: {{sellerIdentity.dic}}</div>
+        {{/if}}
+        {{#if sellerIdentity.icdph}}
+        <div>IČ DPH: {{sellerIdentity.icdph}}</div>
+        {{/if}}
+       </div>
+      <div class="logo">
+          <img src="/image1/"/>
+      </div>
+    </div>
+    <div class="number-and-buyer">
+      <div class="buyer">
+        <div class="billing">
+          <div class="header">Odoberateľ</div>
+            <div>{{buyer.billing.name}}</div>
+            <div>{{buyer.billing.street}}</div>
+            <div>{{buyer.billing.zip}} {{buyer.billing.city}}</div>
+            <div>{{buyer.billing.country}}</div>
+            {{#if buyer.billing.ico}}
+            <div>IČO: {{buyer.billing.ico}}</div>
+            {{/if}}
+            {{#if buyer.billing.dic}}
+            <div>DIČ: {{buyer.billing.dic}}</div>
+            {{/if}}
+            {{#if buyer.billing.icdph}}
+            <div>IČ DPH: {{buyer.billing.icdph}}</div>
+            {{/if}}
+        </div>
+        {{#if buyer.delivery}}
+        <div class="delivery">
+          <div class="header">Dodacia adresa</div>
+            <div>{{buyer.delivery.street}}</div>
+            <div>{{buyer.delivery.zip}} {{buyer.delivery.city}}</div>
+            <div>{{buyer.delivery.country}}</div>
+        </div>
+        {{/if}}
+    </div>
+  </div>
+ </div>
+  <div class="items">
+    <div class="items-header">
+      <div class="product-name">Meno produktu</div>
+      <div>Mnozstvo</div>
+      <div>Jedn. cena bez DPH pred zľavou</div>
+      <div>Zľava v %</div>
+      <div>Jedn. cena bez DPH po zľave</div>
+      <div>Jedn. cena s DPH</div>
+      <div>Celkovo</div>
+    </div>
+    {{#each formattedProducts}}
+    <div class="items-cont">
+       <div class="product-name">{{this.name}}</div>
+        <div>{{this.quantity}} {{this.quantityUnit}}</div>
+        <div>{{this.priceBeforeDiscountWithoutVAT}}</div>
+        <div>{{#if (ne this.discount 0)}}{{this.discount}}{{/if}}</div>
+        <div>{{this.priceAfterDiscountWithoutVAT}}</div>
+        <div>{{this.priceAfterDiscountWithVAT}}</div>
+        <div>{{this.totalPrice}}</div>
+    </div>
+    {{/each}}
+  </div>
+  <div class="footer">
+    <div class="note">
+      <div>Poznamka: {{note}}</div>
+    </div>
+    <div class="summary"> 
+      <div class="vat">
+       <div>
+        <div>DPH</div>
+        <div>Základ DPH</div>
+        <div>Výška DPH</div>
+        <div>Celkovo k uhrade</div>
+        <div>Uhradené</div>
+      </div>
+      <div>
+        <div>20%</div>
+        <div>{{priceSumWithoutVAT}}</div>
+        <div>{{priceSumVATDifference}}</div>
+        <div class="total">{{priceSumWithVAT}}</div>
+        <div class="total">{{priceSumPaidAlready}}</div>
+      </div>
+     </div>
+    </div>
+  </div>
+
+<!-- End your code here -->
+</body>
+</html>
