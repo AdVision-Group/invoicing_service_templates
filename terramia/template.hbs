@@ -13,7 +13,9 @@
     <div class="number">Faktúra {{identifier}}</div>
     <div>
       <div>Dátum vystavenia: {{dateCreated}}</div>
-      <div>Dátum dodania: {{dateDelivered}}</div>
+      {{#if dateDelivered}}
+        <div>Dátum dodania: {{dateDelivered}}</div>
+      {{/if}}
       <div>Dátum splatnosti: {{dateDue}}</div>
       <div>Spôsob úhrady: {{transactionType}}</div>
     </div>
