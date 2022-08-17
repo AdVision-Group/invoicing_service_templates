@@ -13,7 +13,7 @@
          <div>
             <div>Dátum vystavenia: {{dateCreated}}</div>
             {{#if dateDelivered}}
-               <div>Dátum dodania: {{dateCreated}}</div>
+               <div>Dátum dodania: {{dateDelivered}}</div>
             {{/if}}
             <div>Dátum splatnosti: {{dateDue}}</div>
             <div>Spôsob úhrady: {{transactionType}}</div>
@@ -22,7 +22,7 @@
       <div class="invoice-header">
          <div class="seller">
             <div class="info">
-               <div class="header">Dodávateľ</div>
+               <div class="header">DodáTaxeľ</div>
                <div>Underoof, s. r. o.</div>
                <div>Jamnického 3252/3</div>
                <div>841 05 Bratislava</div>
@@ -31,7 +31,7 @@
                <div>DIČ: 2121347349</div>
             </div>
             <div class="logo">
-               <img src="https://i.ibb.co/zJMc2mJ/bakus.png" />
+               <img src="https://raw.githubusercontent.com/AdVision-Group/invoicing_service_templates/main/underoof/logo.png" />
             </div>
          </div>
          <div class="number-and-buyer">
@@ -42,14 +42,16 @@
                   <div>{{buyer.billing.street}}</div>
                   <div>{{buyer.billing.zip}} {{buyer.billing.city}}</div>
                   <div>{{buyer.billing.country}}</div>
-                  {{#if buyer.billing.ico}}
-                     <div>IČO: {{buyer.billing.ico}}</div>
-                  {{/if}}
-                  {{#if buyer.billing.dic}}
-                     <div>DIČ: {{buyer.billing.dic}}</div>
-                  {{/if}}
-                  {{#if buyer.billing.icdph}}
-                     <div>IČ DPH: {{buyer.billing.icdph}}</div>
+                  {{#if buyer.company}}
+                     {{#if buyer.company.ico}}
+                        <div>IČO: {{buyer.company.ico}}</div>
+                     {{/if}}
+                     {{#if buyer.company.dic}}
+                        <div>DIČ: {{buyer.company.dic}}</div>
+                     {{/if}}
+                     {{#if buyer.company.icdph}}
+                        <div>IČ DPH: {{buyer.company.icdph}}</div>
+                     {{/if}}
                   {{/if}}
                </div>
                {{#if buyer.delivery}}
@@ -77,10 +79,10 @@
             <div class="items-cont">
                <div class="product-name">{{this.name}}</div>
                <div>{{this.quantity}} {{this.quantityUnit}}</div>
-               <div>{{this.priceBeforeDiscountWithoutVAT}}</div>
+               <div>{{this.priceBeforeDiscountWithoutTax}}</div>
                <div>{{#if (ne this.discount 0)}}{{this.discount}}{{/if}}</div>
-               <div>{{this.priceAfterDiscountWithoutVAT}}</div>
-               <div>{{this.priceAfterDiscountWithVAT}}</div>
+               <div>{{this.priceAfterDiscountWithoutTax}}</div>
+               <div>{{this.priceAfterDiscountWithTax}}</div>
                <div>{{this.totalPrice}}</div>
             </div>
          {{/each}}
@@ -95,7 +97,7 @@
             {{/if}}
          </div>
          <div class="summary">
-            <div class="vat">
+            <div class="Tax">
                <div>
                   <div>DPH</div>
                   <div>Základ DPH</div>
@@ -105,9 +107,9 @@
                </div>
                <div>
                   <div>20%</div>
-                  <div>{{priceSumWithoutVAT}}</div>
-                  <div>{{priceSumVATDifference}}</div>
-                  <div class="total">{{priceSumWithVAT}}</div>
+                  <div>{{priceSumWithoutTax}}</div>
+                  <div>{{priceSumTaxDifference}}</div>
+                  <div class="total">{{priceSumWithTax}}</div>
                   <div class="total">{{priceSumPaidAlready}}</div>
                </div>
             </div>
